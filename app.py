@@ -222,6 +222,10 @@ def dashboard():
 def profile():
     return render_template("profileUser.html")
 
+@app.route('/menstrualCycle')
+def menstrualCycle():
+    return render_template("menstrualCycle.html")
+
 @app.route('/userPain')
 def userPain():
     return render_template("userPain.html")

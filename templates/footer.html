@@ -1,0 +1,61 @@
+<style>
+    footer {
+        background-color: #fff;
+        padding-left: 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .footer-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-column a {
+        text-decoration: none;
+        color:#e53e6a;
+        margin: 5px 0;
+    }
+
+    .social-media {
+        display: flex;
+        gap: 10px;
+        margin-right: 60px;
+    }
+
+    .social-media img {
+        width: 30px;
+        height: 30px;
+    }
+</style>
+<footer>
+    <div class="footer-column">
+        <a href="/dashboard">
+            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Femminder Logo">
+        </a>
+    </div>
+    <div class="footer-column">
+        <a href="#">Careers</a>
+        <a href="#">Teachers</a>
+        <a href="#">Support</a>
+        <a href="#">Contact</a>
+    </div>
+    <div class="footer-column">
+        <a href="#">Courses</a>
+        <a href="#">Pricing</a>
+        <a href="#">Blog</a>
+    </div>
+    <div class="footer-column">
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Privacy policy</a>
+    </div>
+    <div class="social-media">
+        <img src="{{ url_for('static', filename='assets/twitter.png') }}" alt="Facebook">
+        <img src="{{ url_for('static', filename='assets/facebook.png') }}" alt="Twitter">
+        <img src="{{ url_for('static', filename='assets/instagram.png') }}" alt="Instagram">
+    </div>
+</footer>

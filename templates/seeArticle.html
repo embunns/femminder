@@ -167,7 +167,9 @@
 <body>
     <header>
         <div class="logo">
-            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Femminder Logo">
+            <a href="/dashboard">
+                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Femminder Logo">
+            </a>
         </div>
         <nav>
             <ul>
@@ -175,8 +177,12 @@
             </ul>
         </nav>
         <div class="profile-info">
-            <img src="{{ url_for('static', filename='assets/user.png') }}" alt="Profile Picture">
-            <p>Anila Dwi Lestari<br>20 years</p>
+            <div class="profile-info">
+                <a href="/profileUser">
+                    <img src="{{ url_for('static', filename='assets/user.png') }}" alt="Profile Picture">
+                    <p>Anila Dwi Lestari<br>20 years</p>
+                </a>
+            </div>
         </div>
     </header>
    
@@ -214,7 +220,9 @@
 
     <footer>
         <div class="footer-column">
-            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Femminder Logo">
+            <a href="/dashboard">
+                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Femminder Logo">
+            </a>
         </div>
         <div class="footer-column">
             <a href="#">Careers</a>

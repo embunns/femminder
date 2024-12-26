@@ -217,7 +217,9 @@
 <body class="body-homepage">
     <header>
         <div class="logo">
-            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Femminder Logo">
+            <a href="/dashboard">
+                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Femminder Logo">
+            </a>
         </div>
         <nav>
             <ul>
@@ -225,15 +227,19 @@
             </ul>
         </nav>
         <div class="profile-info">
-            <img src="{{ url_for('static', filename='assets/user.png') }}" alt="Profile Picture">
-            <p>Anila Dwi Lestari<br>20 years</p>
+            <div class="profile-info">
+                <a href="/profileUser" class="profile-info" style="text-decoration: none; color: inherit;">
+                    <img src="{{ url_for('static', filename='assets/user.png') }}" alt="Profile Picture">
+                    <p>Anila Dwi Lestari<br>20 years</p>
+                </a>
+            </div>
         </div>
     </header>
     <section class="hero">
         <div class="hero-content">
             <h1>Menstrual Period</h1>
             <h1><span>13 Days</span></h1>
-            <button class="button">Note Menstrual Periods</button>
+            <a href="{{ url_for('menstrualCycle') }}" class="btn button">Note Menstrual Periods</a>
         </div>
         <div class="hero-image">
             <img src="{{ url_for('static', filename='assets/homepage.png') }}" alt="Illustration">
@@ -289,7 +295,9 @@
     
     <footer>
         <div class="footer-column">
-            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Femminder Logo">
+            <a href="/dashboard">
+                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Femminder Logo">
+            </a>
         </div>
         <div class="footer-column">
             <a href="#">Careers</a>
