@@ -215,26 +215,7 @@
     </style>
 </head>
 <body class="body-homepage">
-    <header>
-        <div class="logo">
-            <a href="/dashboard">
-                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Femminder Logo">
-            </a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-            </ul>
-        </nav>
-        <div class="profile-info">
-            <div class="profile-info">
-                <a href="/profileUser" class="profile-info" style="text-decoration: none; color: inherit;">
-                    <img src="{{ url_for('static', filename='assets/user.png') }}" alt="Profile Picture">
-                    <p>Anila Dwi Lestari<br>20 years</p>
-                </a>
-            </div>
-        </div>
-    </header>
+    {% include 'header.html' %}
     <section class="hero">
         <div class="hero-content">
             <h1>Menstrual Period</h1>
@@ -255,7 +236,7 @@
                     <h3>OMG! Is your menstrual period late? Come on, try the following method!</h3>
                     <p>17 hours ago</p>
                     <p>Abdominal pain during menstruation? Solve it with simple kitchen ingredients! 🫖 Come on, try these natural tips to feel more comfortable...</p>
-                    <a href="#">Read More</a>
+                    <a href="{{ url_for('seeArticle') }}">Read More</a>
                 </div>
     
                 <div class="article-card">

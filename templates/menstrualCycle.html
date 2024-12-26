@@ -66,16 +66,26 @@
             transform: scale(1.1);  /* Sedikit membesar saat hover */
             transition: all 0.3s ease;
         }
-        
-        .day.active {
-            background-color: #E64078;
-            color: #fff;
-        }
 
+        .day.active {
+            background-color: #E64078; /* Warna untuk tanggal yang dipilih */
+            color: white;
+            font-weight: bold;
+        }
+        
+        .day.today {
+            background-color:rgb(192, 192, 192); /* Warna untuk tanggal hari ini (oranye) */
+        }
+        
+        .day.today.active {
+            background-color: #E64078; /* Warna lebih gelap jika hari ini juga dipilih */
+        }
+        
         .edit-calendar {
             margin-top: 20px;
             display: flex;
             justify-content: right;
+            gap: 20px;
         }
         #btn-edit-calendar {
             background-color: #E64078;
@@ -89,6 +99,29 @@
         #btn-edit-calendar:hover {
             background-color: #d4376a;
         }
+
+        #btn-save-calendar{
+            background-color: #E64078;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #btn-edit-calendar.cancel {
+            background-color:rgb(214, 214, 214);  /* Merah */
+            color: black;
+        }
+        #btn-edit-calendar.cancel:hover {
+            background-color: rgb(161, 161, 161);;
+        }
+
+        #btn-editcalendar-only{
+            justify-content: right;
+        }
+        
     </style>
 </head>
 <body>
@@ -100,76 +133,166 @@
             <button id="next-month">&#8250;</button>
         </div>
         <div class="calendar-grid" id="calendar-grid">
-            <!-- Grid akan dirender melalui JavaScript -->
+            <!-- Tanggal akan dirender melalui JavaScript -->
         </div>
         <div class="edit-calendar">
-            <button id="btn-edit-calendar">Edit Calendar</button>
+            <button id="btn-edit-calendar" id"btn-editcalendar-only">Edit Calendar</button>
+            <button id="btn-save-calendar" style="display:none;">Save</button>
         </div>
     </div>
+
     {% include 'footer.html' %}
     <script>
         const currentMonth = document.getElementById('current-month');
         const prevMonth = document.getElementById('prev-month');
         const nextMonth = document.getElementById('next-month');
         const calendarGrid = document.getElementById('calendar-grid');
-    
+        const editButton = document.getElementById('btn-edit-calendar');
+        const saveButton = document.getElementById('btn-save-calendar');
+
         let date = new Date();
-    
+        let editMode = false;
+        let selectedDates = new Set();
+
+
         function renderCalendar() {
             calendarGrid.innerHTML = '';
-    
+
             const year = date.getFullYear();
             const month = date.getMonth();
-    
+
             currentMonth.textContent = date.toLocaleString('default', { month: 'long', year: 'numeric' });
-    
-            const firstDay = new Date(year, month, 1).getDay();  // 1st day position (0-6)
-            const lastDate = new Date(year, month + 1, 0).getDate();  // Total days in the month
-    
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const lastDate = new Date(year, month + 1, 0).getDate();
+
             const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
             dayNames.forEach(day => {
                 calendarGrid.innerHTML += `<div class="day-name">${day}</div>`;
             });
-    
+
             let startOffset = firstDay === 0 ? 6 : firstDay - 1;
-    
+
             for (let i = 0; i < startOffset; i++) {
                 calendarGrid.innerHTML += `<div class="day"></div>`;
             }
-    
+
             for (let day = 1; day <= lastDate; day++) {
-                calendarGrid.innerHTML += `<div class="day" data-day="${day}">${day}</div>`;
+                let classes = 'day';
+                const currentDate = new Date(year, month, day);
+                const formattedDate = `${year}-${month + 1}-${day}`;
+            
+                // Cek apakah hari ini
+                const today = new Date();
+                const isToday = currentDate.toDateString() === today.toDateString();
+            
+                if (selectedDates.has(formattedDate)) {
+                    classes += ' active';
+                }
+            
+                if (isToday) {
+                    classes += ' today';
+                }
+            
+                calendarGrid.innerHTML += `
+                    <div class="${classes}" data-date="${formattedDate}">
+                        ${day}
+                    </div>`;
             }
-    
+            
+
             const totalSlots = startOffset + lastDate;
             const remainingSlots = 42 - totalSlots;
-    
+
             for (let i = 0; i < remainingSlots; i++) {
                 calendarGrid.innerHTML += `<div class="day"></div>`;
             }
-    
-            // Tambahkan event listener untuk klik pada tanggal
-            const days = document.querySelectorAll('.day[data-day]');
+
+            addDateClickEvent();
+        }
+
+        function addDateClickEvent() {
+            const days = document.querySelectorAll('.day[data-date]');
             days.forEach(day => {
                 day.addEventListener('click', (event) => {
-                    const selectedDay = event.target.getAttribute('data-day');
-                    const selectedDate = `${selectedDay} ${currentMonth.textContent}`;
-                    window.location.href = `/userPain?date=${selectedDate}`;
+                    let selectedDate = event.target.getAttribute('data-date');
+        
+                    // Pastikan format tanggal memiliki dua digit bulan/tanggal (YYYY-MM-DD)
+                    const dateParts = selectedDate.split('-');
+                    const formattedDate = `${dateParts[0]}-${dateParts[1].padStart(2, '0')}-${dateParts[2].padStart(2, '0')}`;
+                    
+                    if (!editMode) {
+                        // Kirim tanggal dalam format YYYY-MM-DD ke halaman userPain
+                        window.location.href = `/userPain?date=${formattedDate}`;
+                    } else {
+                        // Toggle active state
+                        if (selectedDates.has(selectedDate)) {
+                            selectedDates.delete(selectedDate);
+                            event.target.classList.remove('active');
+                        } else {
+                            selectedDates.add(selectedDate);
+                            event.target.classList.add('active');
+                        }
+                    }
                 });
             });
         }
-    
+        
+        
+        // Fungsi untuk memformat tanggal ke format "Hari, Tanggal Bulan Tahun"
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('id-ID', {
+                weekday: 'long',   // Nama hari (Senin, Selasa, etc.)
+                day: 'numeric',    // Tanggal
+                month: 'long',     // Nama bulan (Januari, Februari, etc.)
+                year: 'numeric'    // Tahun
+            });
+        }
+        
+
+        // Edit Calendar Mode
+        // Edit Calendar Mode
+        editButton.addEventListener('click', () => {
+            editMode = !editMode;
+            saveButton.style.display = editMode ? 'block' : 'none';
+            
+            if (editMode) {
+                editButton.textContent = 'Cancel';
+                editButton.classList.add('cancel');  // Tambahkan kelas cancel saat edit aktif
+            } else {
+                editButton.textContent = 'Edit Calendar';
+                editButton.classList.remove('cancel');  // Hapus kelas cancel saat keluar dari mode edit
+            }
+        });
+
+
+        // Simpan Tanggal yang Dipilih
+       // Simpan Tanggal yang Dipilih
+        saveButton.addEventListener('click', () => {
+            console.log('Selected Dates:', Array.from(selectedDates));
+            alert('Menstrual dates saved successfully!');
+            
+            editMode = false;
+            saveButton.style.display = 'none';
+            
+            editButton.textContent = 'Edit Calendar';
+            editButton.classList.remove('cancel');  // Hapus kelas cancel agar warna kembali ke awal
+        });
+
+
         prevMonth.addEventListener('click', () => {
             date.setMonth(date.getMonth() - 1);
             renderCalendar();
         });
-    
+
         nextMonth.addEventListener('click', () => {
             date.setMonth(date.getMonth() + 1);
             renderCalendar();
         });
-    
+
         renderCalendar();
-    </script>
+
+            </script>
 </body>
 </html>

@@ -165,27 +165,7 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <a href="/dashboard">
-                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Femminder Logo">
-            </a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-            </ul>
-        </nav>
-        <div class="profile-info">
-            <div class="profile-info">
-                <a href="/profileUser">
-                    <img src="{{ url_for('static', filename='assets/user.png') }}" alt="Profile Picture">
-                    <p>Anila Dwi Lestari<br>20 years</p>
-                </a>
-            </div>
-        </div>
-    </header>
-   
+    {% include 'header.html' %} 
 
     <div class="article-container">
         <h2>OMG! Is your menstrual period late? Try these methods!</h2>
