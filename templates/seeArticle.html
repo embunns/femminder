@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menstrual Period Article</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background: linear-gradient(to bottom, #f9e0ee, #ffffff);
+        }
+
+        .body-homepage{
+            background-color: #fff;
+        }
+
+        header {
+            background:rgb(255, 236, 241);  
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img{
+            position: absolute; /* Logo melayang */
+            top: 10px; /* Jarak dari atas */
+            left: 50px; /* Jarak dari kiri */
+            width: 180px; /* Ukuran logo */
+            height: auto; /* Menjaga proporsi gambar */
+            z-index: 1000; /* Agar di atas elemen lain */
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            font-weight: bold;
+            
+        }
+
+        nav li {
+            margin-left: 1100px;  
+        }
+
+        nav a {
+            text-decoration: none;
+            color:#e53e6a;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+            
+        }
+
+        .profile-info img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .profile-info p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .article-container {
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+
+        .article-container h2{
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #article-container-ptitle{
+            font-size: 20px;
+            text-align: center;
+            color:rgb(182, 182, 182);
+        }
+
+        .article-image {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .article-image img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .article-content {
+            text-align: justify;
+        }
+
+        .tags {
+            text-align: left;
+            margin: 30px 0;
+            font-size: 0.9rem;
+            color: #c75070;
+        }
+
+        .back-btn {
+            text-align: left;
+            margin-top: 40px;
+        }
+
+        .back-btn button {
+            background-color: #c75070;
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .back-btn button:hover {
+            background-color: #b54460;
+        }
+
+        footer {
+            background-color: #fff;
+            padding-left: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-column a {
+            text-decoration: none;
+            color:#e53e6a;
+            margin: 5px 0;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 10px;
+            margin-right: 60px;
+        }
+
+        .social-media img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Femminder Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+            </ul>
+        </nav>
+        <div class="profile-info">
+            <img src="{{ url_for('static', filename='assets/user.png') }}" alt="Profile Picture">
+            <p>Anila Dwi Lestari<br>20 years</p>
+        </div>
+    </header>
+   
+
+    <div class="article-container">
+        <h2>OMG! Is your menstrual period late? Try these methods!</h2>
+        <p id="article-container-ptitle">November 24, 2024</P>
+        <div class="article-image">
+            <img src="https://via.placeholder.com/600x400" alt="Menstrual Cycle Calendar">
+        </div>
+
+        <div class="article-content">
+            <p>
+                OMG! Is your period late? Don’t panic just yet! A late period is quite common and can happen for various reasons. Factors like prolonged stress, irregular eating habits, lifestyle changes, drastic weight gain or loss, or even excessive exercise can affect your menstrual cycle. So, don’t worry too much—your body might just need time to adjust.
+                To help regulate your period, you can try some natural remedies that are easy to do at home. For instance, consuming certain foods like ginger, cinnamon, turmeric, or papaya is believed to help manage menstrual cycles. 
+                Drinking warm water can also improve blood flow to the pelvic area and relieve tension.
+                <br>Additionally, take some time to relax. Stress is one of the main causes of menstrual cycle disruptions, so managing stress effectively is important. Meditation, yoga, or even simply lying down while listening to your favorite music can be simple yet effective solutions. Don’t forget to maintain a proper sleep schedule and avoid staying up late.
+                Moreover, understanding your body and its natural rhythm is essential for maintaining your overall well-being. It’s important to note that irregular periods can be a normal occurrence at certain stages of life, such as during puberty or menopause. In these phases, hormonal fluctuations can temporarily disrupt your cycle. However, outside of these periods, keeping track of your menstrual cycle can provide valuable insights into your health. Using apps or a menstrual calendar can help you monitor patterns and identify any irregularities early.
+                Diet also plays a crucial role in maintaining hormonal balance. 
+                <br>Incorporate nutrient-rich foods like leafy greens, nuts, seeds, and whole grains into your meals to support reproductive health. Foods rich in vitamin C, like citrus fruits, and iron-rich options, such as spinach or lean meats, can help replenish your body, especially after a heavy period. Avoid excessive caffeine and sugary foods, as they can sometimes exacerbate PMS symptoms or hormonal imbalances.
+                However, if your period is late by more than a few weeks or comes with other symptoms like severe pain, extreme weight changes, or unusual bleeding, it’s best to consult a doctor to rule out any serious health conditions.
+                Remember, our bodies are smart, and sometimes they just need a little time to get back on track. While waiting, take care of yourself with a balanced diet, stay physically active, and give your body enough rest. Always listen to your body’s signals and treat yourself with love and care. 🌸💕
+            </p>
+        </div>
+
+        <div class="tags">
+            #SmoothPeriods #HealthyTips #WomenHealth #SelfCare #BalancedLife
+        </div>
+
+        <div class="back-btn">
+            <button>Back</button>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="footer-column">
+            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Femminder Logo">
+        </div>
+        <div class="footer-column">
+            <a href="#">Careers</a>
+            <a href="#">Teachers</a>
+            <a href="#">Support</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="footer-column">
+            <a href="#">Courses</a>
+            <a href="#">Pricing</a>
+            <a href="#">Blog</a>
+        </div>
+        <div class="footer-column">
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy policy</a>
+        </div>
+        <div class="social-media">
+            <img src="{{ url_for('static', filename='assets/twitter.png') }}" alt="Facebook">
+            <img src="{{ url_for('static', filename='assets/facebook.png') }}" alt="Twitter">
+            <img src="{{ url_for('static', filename='assets/instagram.png') }}" alt="Instagram">
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -222,6 +222,14 @@ def dashboard():
 def profile():
     return render_template("profileUser.html")
 
+@app.route('/userPain')
+def userPain():
+    return render_template("userPain.html")
+
+@app.route('/seeArticle')
+def seeArticle():
+    return render_template("seeArticle.html")
+
 @app.route('/logout')
 def logout():
     session.pop('username', None)
